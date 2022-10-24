@@ -161,7 +161,10 @@ public class FreizeitbaederView {
 		
 		// TODO: call fzbMode. write to file...
 		// TODO: wrap the controller's method with the according type
-	
+		
+		this.fzbControl.schreibeFreizeitbaederInDatei(typ);
+		System.out.println("[DBG] VIEW wants to write to " + typ);
+
 	}
 	
 	private void zeigeFreizeitbaederAn(){

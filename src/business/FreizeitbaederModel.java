@@ -15,6 +15,8 @@ public class FreizeitbaederModel {
 	public void schreibeFreizeitbaederInCsvDatei() throws IOException {
 		// Throw exception
 		
+		System.out.println("[DBG] MODEL tries to save ") ;
+		
 		try {
 			BufferedWriter aus = new BufferedWriter(new FileWriter("Freizeitbaeder.csv", true));
 			aus.write(this.getFreizeitbad().gibFreizeitbadZurueck(';'));

@@ -20,6 +20,7 @@ public class FreizeitbaederControl {
     }
 	
 	void schreibeFreizeitbaederInDatei(String typ) {
+		System.out.println("[DBG] CONTROL tries to write to " + typ);
 		try {
 			if ("csv".contentEquals(typ)) {
 				// Typs und Ausgabe der Meldung
