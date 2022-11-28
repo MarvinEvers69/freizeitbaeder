@@ -20,11 +20,18 @@ public class FreizeitbaederControl {
     }
 	
 	void schreibeFreizeitbaederInDatei(String typ) {
-		System.out.println("[DBG] CONTROL tries to write to " + typ);
 		try {
 			if ("csv".contentEquals(typ)) {
+				// Aufruf des Models zum Schreiben des
+				// Freizeitbads in die Datei des vorgegebenen
 				// Typs und Ausgabe der Meldung
 				fzbModel.schreibeFreizeitbaederInCsvDatei();
+			}
+			else if ("txt".contentEquals(typ)) {
+				// Aufruf des Models zum Schreiben des
+				// Freizeitbads in die Datei des vorgegebenen
+				// Typs und Ausgabe der Meldung
+				fzbModel.schreibeFreizeitbaederInTxtDatei();
 			}
 			else {
 				fzbView.zeigeInformationsfensterAn("Noch nicht implementiert!");

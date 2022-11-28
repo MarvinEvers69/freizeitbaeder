@@ -1,5 +1,7 @@
 package gui;
 
+import java.io.IOException;
+
 import business.Freizeitbad;
 import business.FreizeitbaederModel;
 import javafx.event.ActionEvent;
@@ -26,9 +28,9 @@ public class FreizeitbaederView {
     private Label lblEingabe    	 	= new Label("Eingabe");
     private Label lblAnzeige   	 	    = new Label("Anzeige");
     private Label lblName 				= new Label("Name:");
-    private Label lblGeoeffnetVon   	= new Label("Geï¿½ffnet von:");
-    private Label lblGeoeffnetBis  	 	= new Label("Geï¿½ffnet bis:");
-    private Label lblBeckenlaenge   	= new Label("Beckenlï¿½nge:");
+    private Label lblGeoeffnetVon   	= new Label("Geöffnet von:");
+    private Label lblGeoeffnetBis  	 	= new Label("Geöffnet bis:");
+    private Label lblBeckenlaenge   	= new Label("Beckenlänge:");
     private Label lblWassTemperatur  	= new Label("Wassertemperatur:");
     private TextField txtName 	 		= new TextField();
     private TextField txtGeoeffnetVon	= new TextField();
@@ -56,7 +58,7 @@ public class FreizeitbaederView {
     	
     	Scene scene = new Scene(this.pane, 560, 340);
     	primaryStage.setScene(scene);
-    	primaryStage.setTitle("Verwaltung von Freizeitbï¿½dern");
+    	primaryStage.setTitle("Verwaltung von Freizeitbädern");
     	primaryStage.show();
     	this.initKomponenten();
 		this.initListener();
@@ -141,14 +143,14 @@ public class FreizeitbaederView {
 		mnItmCsvExport.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				schreibeFreizeitbaederInDatei("csv");
+				fzbControl.schreibeFreizeitbaederInDatei("csv");
 			}
 		});
 		
 		mnItmTxtExport.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				schreibeFreizeitbaederInDatei("txt");
+				fzbControl.schreibeFreizeitbaederInDatei("txt");
 			}
 		});
 	    
@@ -158,13 +160,26 @@ public class FreizeitbaederView {
 	private void schreibeFreizeitbaederInDatei(String typ) {
 		// Aufruf des Controls zum Schreiben des Freizeitbads in die
 		// Datei des vorgegebenen Typs.
-		
-		// TODO: call fzbMode. write to file...
-		// TODO: wrap the controller's method with the according type
-		
-		this.fzbControl.schreibeFreizeitbaederInDatei(typ);
-		System.out.println("[DBG] VIEW wants to write to " + typ);
-
+		if (typ == "csv") {
+			try {
+				this.fzbModel.schreibeFreizeitbaederInCsvDatei();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if ( typ == "txt") {
+			try {
+				this.fzbModel.schreibeFreizeitbaederInTxtDatei();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {
+			System.out.println("[!!!] Invalid file export format! ");
+		}
+	
 	}
 	
 	private void zeigeFreizeitbaederAn(){

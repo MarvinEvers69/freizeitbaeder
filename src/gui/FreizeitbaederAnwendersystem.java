@@ -48,10 +48,10 @@ public class FreizeitbaederAnwendersystem {
     }
     
     private void initKomponenten(){
-       	// Labels
-    	lblEingabe.setLayoutX(20);
+    	// Labels
+       	lblEingabe.setLayoutX(20);
     	lblEingabe.setLayoutY(40);
-    	Font font = new Font("Arial", 24); 
+    	Font font = new Font("Arial", 24);
     	lblEingabe.setFont(font);
     	lblEingabe.setStyle("-fx-font-weight: bold;"); 
     	lblAnzeige.setLayoutX(310);
